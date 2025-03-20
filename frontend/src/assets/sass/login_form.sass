@@ -1,0 +1,102 @@
+$primary-color: #22bfba
+$secondary-color: #371933
+$gradient-bg: linear-gradient(243.87deg, $primary-color 30.6%, $secondary-color 130.6%)
+$gradient-btn: linear-gradient(198.08deg, $primary-color 45.34%, #e281e7 224.21%)
+$gradient-btn-hover: linear-gradient(198.08deg, darken($primary-color, 10%) 45.34%, #d273d9 224.21%)
+
+html, body
+  height: 100%
+  align-items: center
+  background: $gradient-bg
+
+*
+  box-sizing: border-box
+  margin: 0
+  padding: 0
+  font-family: "Lato", sans-serif
+
+.login-wrapper
+  width: 400px
+  max-width: 90%
+  padding: 40px
+  background-color: #fff
+  box-shadow: 0px 2px 50px rgba(0, 0, 0, 0.2)
+  border-radius: 8px
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+
+  .login-left
+    color: black
+    .logo
+      width: 150px
+      margin-bottom: 20px
+
+h2
+  text-align: center
+  margin-bottom: 20px
+
+.form-group
+  position: relative
+  margin-bottom: 20px
+
+  input
+    width: 100%
+    padding: 10px
+    border: 1px solid #ccc
+    border-radius: 4px
+    font-size: 16px
+
+  label
+    position: absolute
+    top: 50%
+    left: 10px
+    transform: translateY(-50%)
+    font-size: 14px
+    color: #aaa
+    transition: all 0.3s ease
+
+  input:focus + label,
+  input:not(:placeholder-shown) + label
+    top: 5px
+    left: 10px
+    font-size: 12px
+    color: $primary-color
+
+.checkbox-container
+  display: flex
+  align-items: center
+  margin-bottom: 20px
+  color: black
+
+  input
+    margin-right: 10px
+
+.btn-primary
+  width: 100%
+  padding: 10px
+  background: $gradient-btn
+  color: #fff
+  border: none
+  border-radius: 4px
+  font-size: 16px
+  cursor: pointer
+
+  &:hover
+    background: $gradient-btn-hover
+
+@media (min-width: 600px)
+  .login-wrapper
+    flex-direction: row
+    max-width: 600px
+
+  .login-left
+    flex: 1
+    display: flex
+    align-items: center
+    justify-content: center
+
+  .login-right
+    flex: 1
+    padding: 20px
