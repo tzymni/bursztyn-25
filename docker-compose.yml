@@ -5,6 +5,7 @@ services:
     build: ./php
     container_name: laravel_app
     restart: unless-stopped
+    user: "${UID}:${GID}"
     working_dir: /var/www
     volumes:
       - ./app:/var/www
@@ -32,6 +33,14 @@ services:
     image: mongo:latest
     container_name: mongo_db
     restart: unless-stopped
+    env_file:
+      - ./app/.env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
+      MONGO_INITDB_DATABASE: ${DB_DATABASE}
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     ports:
       - "27017:27017"
     networks:
