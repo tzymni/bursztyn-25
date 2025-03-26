@@ -39,6 +39,7 @@ docker-compose up --build -d
 ### 🌐 Available Services
 
 | Service |	URL |
+|---|---|
 | Frontend (Vue) |	http://localhost:5173 |
 | Backend (API) |	http://localhost:9000 |
 | Nginx |	http://localhost:8080 |
