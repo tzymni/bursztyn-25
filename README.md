@@ -20,10 +20,17 @@ git clone https://github.com/username/docker-bursztyn-25.git
 cd docker-bursztyn-25
 ```
 
-### ️⃣ Copy the .env file for Laravel
+### ️⃣ Copy and fill the .env file for Laravel
 ```sh
 cp app/.env.example app/.env
 ```
+
+###  ⃣ Copy and fill the .env file for docker-compose
+
+```sh
+cp .env.example .env
+```
+
 ### ️⃣ Build and start the containers
 
 ```sh
@@ -32,12 +39,11 @@ docker-compose up --build -d
 ### 🌐 Available Services
 
 | Service |	URL |
-|Frontend (Vue) |	http://localhost:5173 |
-|Backend (API) |	http://localhost:9000 |
-|Nginx |	http://localhost:8080 |
-|Elasticsearch	| http://localhost:9200 |
-|MongoDB |	 localhost:27017 |
-
+| Frontend (Vue) |	http://localhost:5173 |
+| Backend (API) |	http://localhost:9000 |
+| Nginx |	http://localhost:8080 |
+| Elasticsearch	| http://localhost:9200 |
+| MongoDB |	 localhost:27017 |
 
 ### 🔧 Managing Containers
 
