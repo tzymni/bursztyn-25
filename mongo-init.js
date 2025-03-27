@@ -10,5 +10,6 @@ db.createUser({
         }
     ]
 });
+db.sessions.dropIndex("id_1")
 
 print("MongoDB user created successfully!");

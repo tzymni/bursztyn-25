@@ -8,7 +8,7 @@ services:
     user: "${UID:-1000}:${GID:-1000}"
     working_dir: /var/www
     volumes:
-      - ./app:/var/www
+      - ./app:/var/www:rw
     depends_on:
       - mongo
       - elasticsearch

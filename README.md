@@ -38,13 +38,13 @@ docker-compose up --build -d
 ```
 ### 🌐 Available Services
 
-| Service |	URL |
-|---|---|
-| Frontend (Vue) |	http://localhost:5173 |
-| Backend (API) |	http://localhost:9000 |
-| Nginx |	http://localhost:8080 |
-| Elasticsearch	| http://localhost:9200 |
-| MongoDB |	 localhost:27017 |
+| Service | 	URL                    |
+|---|-------------------------|
+| Frontend (Vue) | 	http://localhost:5173  |
+| Backend (API) | 	http://localhost:8080  |
+| Nginx | 	http://localhost:8080  |
+| Elasticsearch	| http://localhost:9200   |
+| MongoDB | 	 http://localhost:27017 |
 
 ### 🔧 Managing Containers
 
@@ -64,6 +64,24 @@ Restart containers:
 ```sh
 docker-compose restart
 ```
+
+
+### 🔧 Backend configuration
+
+In app container create an APP_KEY
+
+```shell
+./artisan key:generate
+```
+
+Run migrations
+
+```shell
+./artisan migrate:install
+```
+
+
+
 
 ### 📌 Additional Information
 
