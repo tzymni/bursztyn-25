@@ -8,8 +8,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::post('/register',[UserAuthController::class,'register']);
-
-Route::get('/test-api', function () {
-    return response()->json(['message' => 'API is working']);
+Route::controller(UserAuthController::class)->group(function(){
+    Route::post('/register', 'register');
+    Route::post('/login', 'login');
 });

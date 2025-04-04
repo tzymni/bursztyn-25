@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 /**
@@ -27,7 +28,7 @@ class UserAuthController extends BaseApiController
             'c_password' => 'required|same:password',
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return $this->sendError('Validation Error.', (array)$validator->errors());
         }
 
@@ -38,28 +39,31 @@ class UserAuthController extends BaseApiController
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
-        $success['token'] =  $user->createToken(env("TOKEN_ID"))->plainTextToken;
-        $success['name'] =  $user->name;
-        $success['email'] =  $user->email;
+        $success['token'] = $user->createToken(env("TOKEN_ID"))->plainTextToken;
+        $success['name'] = $user->name;
+        $success['email'] = $user->email;
 
         return $this->sendResponse($success, 'User register successfully.');
     }
 
 
-
     /**
-     * Update the specified resource in storage.
+     * Login to the API to get the Sanctum Token.
+     *
+     * @param Request $request
+     * @return JsonResponse
      */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(User $user)
+    public function login(Request $request): JsonResponse
     {
-        //
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            $user = Auth::user();
+            $success['token'] = $user->createToken(env("TOKEN_ID"))->plainTextToken;
+            $success['name'] = $user->name;
+
+            return $this->sendResponse($success, 'User login successfully.');
+        } else {
+            return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
+        }
     }
 }
